@@ -1,0 +1,42 @@
+<div class="box-form">
+  <div class="left">
+    <div class="overlay">
+      <h1>Hello World.</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Curabitur et est sed felis aliquet sollicitudin</p>
+    </div>
+  </div>
+
+
+  <div class="right">
+    <div class="error">
+      {{error}}
+    </div>
+    <h5>Login</h5>
+    <p>Don't have an account? <a href="register">Creat Your Account</a> it takes less than a minute</p>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="inputs">
+
+      <input id="login" type="text" formControlName="login" placeholder="user name" required minlength="4" >
+      <br>
+      <input type="password" placeholder="password" id="password" formControlName="password" required minlength="4" >
+    </div>
+
+    <br><br>
+
+    <div class="remember-me--forget-password">
+      <!-- Angular -->
+      <label>
+        <input type="checkbox" name="item" checked/>
+        <span class="text-checkbox">Remember me</span>
+      </label>
+      <p>forget password?</p>
+    </div>
+
+    <br>
+    <button type="submit" [disabled]="!profileForm.valid">Connect</button>
+    </form>
+  </div>
+
+</div>
+
