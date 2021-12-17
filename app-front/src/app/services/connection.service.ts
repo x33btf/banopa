@@ -18,4 +18,13 @@ export class ConnectionService{
     );
   }
 
+  register(formData:any){
+    let host = environment.host+"/register";
+
+    return this.http.post(host, formData).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    );
+  }
+
 }

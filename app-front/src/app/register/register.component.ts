@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {ConnectionService} from "../services/connection.service";
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private service: ConnectionService) { }
 
   ngOnInit(): void {
   }
@@ -26,5 +27,15 @@ export class RegisterComponent implements OnInit {
     var fname = this.profileForm.value.fname;
     var lname = this.profileForm.value.lname;
 
+    var formData: any = new FormData();
+    formData.append("email", login);
+    formData.append("password", password);
+    formData.append("name",fname+" "+lname);
+
+    this.service.register(formData);
+
+    if (login === "abbes"){
+      this.router.navigateByUrl('login');
+    }
   }
 }

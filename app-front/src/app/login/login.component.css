@@ -1,24 +1,6 @@
-body {
-  background-image: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  font-family: "Open Sans", sans-serif;
-  color: #333333;
-}
 
-.box-form {
-  margin: 0 auto;
-  width: 80%;
-  background: #FFFFFF;
-  border-radius: 10px;
-  overflow: hidden;
-  display: flex;
-  flex: 1 1 100%;
-  align-items: stretch;
-  justify-content: space-between;
-  box-shadow: 0 0 20px 6px #090b6f85;
-}
+
+
 @media (max-width: 980px) {
   .box-form {
     flex-flow: wrap;
