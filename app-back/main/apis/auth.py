@@ -37,7 +37,6 @@ class UserRegister(Resource):
         self.user_service = UserService()
 
     @api.expect(user_register_model)
-    # @jwt_required
     def post(self):
         """ Register new User """
         if "email" not in request.json or request.json["email"] == "":

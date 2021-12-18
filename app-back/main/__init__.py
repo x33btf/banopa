@@ -1,6 +1,8 @@
 import datetime
 import logging as log
 import os
+import random
+import json
 
 import coloredlogs
 from flask import Flask
@@ -18,6 +20,8 @@ from config import app_config
 
 from .db import MongoDB
 
+from .services.restaurant_service import RestaurantService
+
 
 def create_app(config_name):
     config_name = "dev" if not config_name else config_name
@@ -30,6 +34,7 @@ def create_app(config_name):
     app.config["CORS_HEADERS"] = "Content-Type"
 
     app.config["JWT_SECRET_KEY"] = "9MZbGqQHaC47SSKyKaTK"
+    app.config["JWT_TOKEN_LOCATION"] = ["headers"]
     app.config["JWT_BLACKLIST_ENABLED"] = True
     app.config["JWT_BLACKLIST_TOKEN_CHECKS"] = ["access", "refresh"]
     app.config["JWT_ACCESS_TOKEN_EXPIRES"] = datetime.timedelta(days=10)
@@ -43,6 +48,11 @@ def create_app(config_name):
 
     with app.app_context():
         db = MongoDB()
+        rest_serv = RestaurantService()
+        k = random.randint(10,20)
+        rest_sample = random.choices(json.load(open('app-back/rest-sample.json', 'r')), k=k)
+        for rest in rest_sample:
+            rest_serv.add(rest)
 
     @jwt.token_in_blacklist_loader
     def check_if_token_in_blacklist(decrypted_token):
