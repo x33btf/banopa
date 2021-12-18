@@ -1,44 +1,35 @@
-<div class="box-form">
-  <div class="left">
-    <div class="overlay">
-      <h1>Hello World.</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Curabitur et est sed felis aliquet sollicitudin</p>
+<div class="container">
+  <div class="row p-lg-5">
+    <div class="col-md-4"></div>
+    <div class="col-md-4"><h1>Register</h1></div>
+  </div>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="form-group p-lg-2">
+      <label for="Fname">First name:</label>
+      <input id="Fname" class="form-control" type="text" formControlName="fname" placeholder="first name" required minlength="4">
+    </div>
+    <div class="form-group p-lg-2">
+      <label for="Lname">First name:</label>
+      <input id="Lname" class="form-control" type="text" formControlName="lname" placeholder="last name" required minlength="4">
+    </div>
+    <div class="form-group p-lg-2">
+      <label for="email">Email:</label>
+      <input id="email" class="form-control" type="text" formControlName="login" placeholder="email" required minlength="4">
+    </div>
+    <div class="form-group p-lg-2">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" placeholder="password" id="password" formControlName="password"
+             required minlength="4">
+    </div>
+    <div class="form-group p-lg-2">
+      <label><input type="checkbox" name="remember"> Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-default" [disabled]="!profileForm.valid">Connect</button>
+  </form>
+  <div class="row" style="margin-top: 20px">
+    <div class="col-md-12">
+      <p>Do you have an account? <a href="login">Connect To Your Account</a></p>
     </div>
   </div>
-
-
-  <div class="right">
-
-    <h5>Register</h5>
-    <p>have an account? <a href="">Login</a>  </p>
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-      <div class="inputs">
-
-        <input id="email" type="text" formControlName="login" placeholder="user name" required minlength="4" >
-        <br>
-        <input id="Fname" type="text" formControlName="fname" placeholder="first name" required minlength="4" >
-        <br>
-        <input id="Lname" type="text" formControlName="lname" placeholder="last name" required minlength="4" >
-        <br>
-        <input type="password" placeholder="password" id="password" formControlName="password" required minlength="4" >
-      </div>
-
-      <br><br>
-
-      <div class="remember-me--forget-password">
-        <!-- Angular -->
-        <label>
-          <input type="checkbox" name="item" checked/>
-          <span class="text-checkbox">Remember me</span>
-        </label>
-        <p>forget password?</p>
-      </div>
-
-      <br>
-      <button type="submit" [disabled]="!profileForm.valid">Connect</button>
-    </form>
-  </div>
-
 </div>
 
