@@ -1,32 +1,31 @@
 <div class="container">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <button class="nav-link active" aria-current="page" (click)="getProducts()">All products</button>
-          </li>
-          <li class="nav-item">
-              <input type="search" class="nav-link" [(ngModel)]="product_filter" (keyup)="filtersProducts()" placeholder="Filter" aria-label="Search"/>
-          </li>
-        </ul>
-  </nav>
+    <div class="container-fluid bg-info form-inline">
+      <button class="btn-primary" (click)="getProducts()" style="padding: 10px;margin: 5px;cursor: pointer">All products</button>
+      <input type="search" class="search-input"  [(ngModel)]="product_filter" (keyup)="filtersProducts()" placeholder="Filter" aria-label="Search"/>
+    </div>
 
-  <table class="table">
-   <tr>
-     <th>userid</th>
-     <th>id</th>
-     <th>title</th>
-     <th>completed</th>
-   </tr>
-   <tr *ngFor="let p of products">
-     <td>{{p.userId}}</td>
-     <td>{{p.id}}</td>
-     <td>{{p.title}}</td>
-     <td>{{p.completed}}</td>
-     <td>
-       <button class="btn btn-danger btn-sm" (click)="remove_product(p)">
-         remove
-       </button>
-     </td>
-   </tr>
- </table>
+
+  <table class="table table-striped product-table">
+    <thead>
+    <tr>
+      <th>userid</th>
+      <th>id</th>
+      <th>title</th>
+      <th>completed</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let p of products">
+      <td>{{p.userId}}</td>
+      <td>{{p.id}}</td>
+      <td>{{p.title}}</td>
+      <td>{{p.completed}}</td>
+      <td>
+        <button class="btn btn-danger btn-sm" (click)="remove_product(p)">
+          remove
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>

@@ -1,42 +1,31 @@
-<div class="box-form">
-  <div class="left">
-    <div class="overlay">
-      <h1>Hello World.</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Curabitur et est sed felis aliquet sollicitudin</p>
+<div class="container">
+  <div class="row error">
+    {{error}}
+  </div>
+  <div class="row p-lg-5">
+    <div class="col-md-4"></div>
+    <div class="col-md-4"><h1>Login</h1></div>
+  </div>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="form-group p-lg-2">
+      <label for="email">Email:</label>
+      <input id="email" class="form-control" type="text" formControlName="login" placeholder="user name" required
+             minlength="4">
+    </div>
+    <div class="form-group p-lg-2">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" placeholder="password" id="password" formControlName="password"
+             required minlength="4">
+    </div>
+    <div class="form-group p-lg-2">
+      <label><input type="checkbox" name="remember"> Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-default" [disabled]="!profileForm.valid">Connect</button>
+  </form>
+  <div class="row p-5">
+    <div class="col-md-12">
+      <p>Don't have an account? <a href="register">Creat Your Account</a></p>
     </div>
   </div>
-
-
-  <div class="right">
-    <div class="error">
-      {{error}}
-    </div>
-    <h5>Login</h5>
-    <p>Don't have an account? <a href="register">Creat Your Account</a> it takes less than a minute</p>
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-    <div class="inputs">
-
-      <input id="login" type="text" formControlName="login" placeholder="user name" required minlength="4" >
-      <br>
-      <input type="password" placeholder="password" id="password" formControlName="password" required minlength="4" >
-    </div>
-
-    <br><br>
-
-    <div class="remember-me--forget-password">
-      <!-- Angular -->
-      <label>
-        <input type="checkbox" name="item" checked/>
-        <span class="text-checkbox">Remember me</span>
-      </label>
-      <p>forget password?</p>
-    </div>
-
-    <br>
-    <button type="submit" [disabled]="!profileForm.valid">Connect</button>
-    </form>
-  </div>
-
 </div>
 
