@@ -55,10 +55,14 @@ class NewRestaurant(Resource):
 update_restaurant_model = api.model(
     "RestaurantUpdateModel",
     {
-        "restaurant_name": fields.String(description="Restaurant name"),
-        "cuisine": fields.String(description="Name of the cuisine"),
-        "genres": fields.String(description="Type of restaurant"),
-        "year": fields.String(description="year of publication"),
+        "restaurant_name": fields.String(description="Restaurant name", required=True),
+        "cuisine": fields.String(description="Name of the cuisine", required=True),
+        "borough": fields.String(description="borough of restaurant", required=True),
+        "address": {
+            "building": fields.String(description="building name/number", required=True),
+            "street": fields.String(description="street name", required=True),
+            "zipcode": fields.String(description="Zipcode", required=True)
+        },
     },
 )
 
