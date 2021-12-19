@@ -3,6 +3,7 @@ import { FormGroup, FormControl  } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 import {ConnectionService} from "../services/connection.service";
+import {AppComponent} from "../app.component";
 
 @Component({
   selector: 'app-login',
@@ -27,16 +28,27 @@ export class LoginComponent implements OnInit {
     var login = this.profileForm.value.login;
     var password = this.profileForm.value.password;
 
-    var formData: any = new FormData();
-    formData.append("email", login);
-    formData.append("password", password);
+    var fData: any = new FormData();
+    fData.append("name","sadik fezfef");
+    fData.append("email", login);
+    fData.append("password", password);
 
-    this.service.connect(formData);
+    const data = {};
+    // @ts-ignore
+    fData.forEach((value :any, key:any) => (data[key] = value));
+    let status = "";
+    this.service.connect(data).subscribe(data => {
+      let res = JSON.stringify(data);
+      let result = JSON.parse(res);
+      console.log(result);
+      if (result['status'] === "success"){
+        console.log("success");
+        localStorage.setItem('token', result['res']['tokens']['access']);
+        localStorage.setItem('token_ref', result['res']['tokens']['refresh']);
+        this.router.navigateByUrl('products');
+      }
+    });
 
-    if (login === "abbes"){
-      this.router.navigateByUrl('products');
-    }else{
-      this.error = "login or password not correct";
-    }
+
   }
 }

@@ -28,14 +28,22 @@ export class RegisterComponent implements OnInit {
     var lname = this.profileForm.value.lname;
 
     var formData: any = new FormData();
+    formData.append("name",fname+" "+lname);
     formData.append("email", login);
     formData.append("password", password);
-    formData.append("name",fname+" "+lname);
 
-    this.service.register(formData);
+    const data = {};
+    // @ts-ignore
+    formData.forEach((value :any, key:any) => (data[key] = value));
 
-    if (login === "abbes"){
-      this.router.navigateByUrl('login');
-    }
+    this.service.register(data).subscribe(data => {
+      let res = JSON.stringify(data);
+      let result = JSON.parse(res)['status'];
+      if (result === "success"){
+        this.router.navigateByUrl('login');
+      }
+    });
+
+
   }
 }

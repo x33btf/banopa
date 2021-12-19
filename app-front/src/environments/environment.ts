@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  host: "https://jsonplaceholder.typicode.com"
+  host: "http://127.0.0.1:5000/v1"
 };
 
 /*

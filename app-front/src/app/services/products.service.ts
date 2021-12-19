@@ -11,7 +11,7 @@ export class ProductsService{
   }
 
   getAllProducts(){
-    let host = environment.host+"/todos?_limit=10)";
+    let host = environment.host+"/restaurant";
     return this.http.get<Product[]>(host);
   }
 

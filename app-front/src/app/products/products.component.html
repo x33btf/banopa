@@ -8,18 +8,18 @@
   <table class="table table-striped product-table">
     <thead>
     <tr>
-      <th>userid</th>
-      <th>id</th>
-      <th>title</th>
-      <th>completed</th>
+      <th>restaurant_name</th>
+      <th>cuisine</th>
+      <th>borough</th>
+      <th>address</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let p of products">
-      <td>{{p.userId}}</td>
-      <td>{{p.id}}</td>
-      <td>{{p.title}}</td>
-      <td>{{p.completed}}</td>
+      <td>{{p.restaurant_name}}</td>
+      <td>{{p.cuisine}}</td>
+      <td>{{p.borough}}</td>
+      <td>{{p.address}}</td>
       <td>
         <button class="btn btn-danger btn-sm" (click)="remove_product(p)">
           remove

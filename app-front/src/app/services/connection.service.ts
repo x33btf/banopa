@@ -10,21 +10,20 @@ export class ConnectionService{
   }
 
   connect(formData:any){
-    let host = environment.host+"/login";
-
-    return this.http.post(host, formData).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    );
+    let host = environment.host+"/auth/login";
+    return this.http.post(host, formData)
   }
 
   register(formData:any){
-    let host = environment.host+"/register";
+    let host = environment.host+"/auth/register";
+    return this.http.post(host, formData);
+  }
 
-    return this.http.post(host, formData).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    );
+  loggediIn(){
+    return !!localStorage.getItem('token');
+  }
+  getToken(){
+    return localStorage.getItem("token");
   }
 
 }
