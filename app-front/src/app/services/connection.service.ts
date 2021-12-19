@@ -1,12 +1,14 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {Token_info} from "../model/product.model";
+import {Router} from "@angular/router";
 
 
 
 @Injectable({providedIn:"root"})
 export class ConnectionService{
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient,private  router:Router) {
   }
 
   connect(formData:any){
@@ -28,6 +30,16 @@ export class ConnectionService{
 
   logOut(){
     localStorage.removeItem('token');
+    this.router.navigateByUrl('login');
   }
 
+  update_user_info(info:any,id:string){
+    let host = environment.host+"/user/"+id;
+    return this.http.put(host,info);
+  }
+
+  refresh_token(){
+    let host = environment.host+"/refresh/token";
+    return this.http.post<Token_info>(host,"");
+  }
 }

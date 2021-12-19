@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductsService} from "../services/products.service";
-import {Product} from "../model/product.model";
+import {Product, Token_info} from "../model/product.model";
 import {Router} from "@angular/router";
 import {ConnectionService} from "../services/connection.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -42,9 +42,19 @@ export class ProductsComponent implements OnInit {
       console.log(data.status);
       this.allProducts = data.res;
       this.products = this.allProducts.slice(0,this.totalElementToShow);
+    },error => {
+      sessionStorage.setItem("token", sessionStorage.getItem("token_ref") || "");
+      this.connService.refresh_token().subscribe(data =>{
+        //to verify
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('token_ref', data.refresh_token);
+      },error=>{
+        this.connService.logOut();
+      });
     })
 
   }
+
   remove_product(p:Product) {
     this.service.remove_product(p._id).subscribe(data => {
       this.getProducts();
@@ -73,14 +83,35 @@ export class ProductsComponent implements OnInit {
         street : this.productForm.value.address_street
       }
     };
+    if( this.default_products._id === ""){
+      this.service.add_product(p).subscribe(data => {
+        this.getProducts();
+      });
+    }else{
+      p._id = this.default_products._id;
+      this.service.update_product(p).subscribe(data =>{
+        this.getProducts();
+      });
+    }
 
-    this.service.add_product(p).subscribe(data => {
-
-    });
   }
 
   update_product(p:Product){
     this.default_products = p;
+  }
+
+  clearDefaultRest(){
+    this.default_products = {
+      _id:"",
+      cuisine:"",
+      borough:"",
+      restaurant_name:"",
+      address: {
+        street: "",
+        building: "",
+        postcode: ""
+      }
+    }
   }
 
 
