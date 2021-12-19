@@ -35,7 +35,8 @@ class NewRestaurant(Resource):
     @api.expect(restaurant_model)
     def post(self):
         """ Save new restaurant object into database """
-
+        if '_id' in request.json: del request.json['_id']
+        
         res, msg, code = self.restaurant_service.add(request.json)
 
         return {
@@ -55,13 +56,13 @@ class NewRestaurant(Resource):
 update_restaurant_model = api.model(
     "RestaurantUpdateModel",
     {
-        "restaurant_name": fields.String(description="Restaurant name", required=True),
-        "cuisine": fields.String(description="Name of the cuisine", required=True),
-        "borough": fields.String(description="borough of restaurant", required=True),
+        "restaurant_name": fields.String(description="Restaurant name", required=False),
+        "cuisine": fields.String(description="Name of the cuisine", required=False),
+        "borough": fields.String(description="borough of restaurant", required=False),
         "address": {
-            "building": fields.String(description="building name/number", required=True),
-            "street": fields.String(description="street name", required=True),
-            "postcode": fields.String(description="Postcode", required=True)
+            "building": fields.String(description="building name/number", required=False),
+            "street": fields.String(description="street name", required=False),
+            "postcode": fields.String(description="Postcode", required=False)
         },
     },
 )
