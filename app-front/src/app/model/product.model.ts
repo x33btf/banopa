@@ -1,6 +1,11 @@
 export  interface Product {
-  userId : string;
-  id : number;
-  title : string
-  completed : boolean
+  restaurant_id : number,
+  restaurant_name: string,
+  cuisine: string,
+  borough: string,
+  address: {
+    building: string,
+    street: string,
+    postcode: string
+  }
 }
