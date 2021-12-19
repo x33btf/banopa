@@ -1,5 +1,6 @@
 <div class="container">
-  <div class="container-fluid bg-info form-inline">
+  <nav class="navbar-fixed-top" style="width: 80%;margin-left: 10%;">
+  <div class="container-fluid bg-info form-inline"  style="margin-top: 80px">
     <button class="btn-primary" (click)="getProducts()" style="padding: 10px;margin: 5px;cursor: pointer">All products
     </button>
     <button type="button" (click)="clearDefaultRest()" class="btn btn-info btn-lg" data-toggle="modal"
@@ -8,8 +9,8 @@
     <input type="search" class="search-input" [(ngModel)]="product_filter" (keyup)="filtersProducts()"
            placeholder="Filter" aria-label="Search"/>
   </div>
-
-  <div class="modal fade" id="myModal" role="dialog">
+  </nav>
+  <div class="modal fade" id="myModal" role="dialog" >
     <div class="modal-dialog">
 
       <!-- Modal content-->
@@ -63,13 +64,21 @@
   </div>
 
 
-  <table class="table table-striped product-table">
+  <table class="table product-table table-hover"
+         infinite-scroll
+         [infiniteScrollDistance]="2"
+         [infiniteScrollUpDistance]="20"
+         [infiniteScrollThrottle]="10"
+         (scrolled)="onScrollDown($event)"
+         (scrolledUp)="onScrollUp($event)"
+         style="margin-top: 150px"
+  >
     <thead>
     <tr>
-      <th>restaurant_name</th>
-      <th>cuisine</th>
-      <th>borough</th>
-      <th>address</th>
+      <th>Restaurant name</th>
+      <th>Cuisine</th>
+      <th>Borough</th>
+      <th>Address</th>
     </tr>
     </thead>
     <tbody>

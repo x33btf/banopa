@@ -14,6 +14,7 @@ import { ProductsComponent } from './products/products.component';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TokenInterceptorService} from "./token-interceptor.service";
+import {InfiniteScrollModule} from "ngx-infinite-scroll";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { TokenInterceptorService} from "./token-interceptor.service";
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    InfiniteScrollModule
   ],
   providers: [
     {

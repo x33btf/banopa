@@ -4,6 +4,7 @@ import {Product, Token_info} from "../model/product.model";
 import {Router} from "@angular/router";
 import {ConnectionService} from "../services/connection.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {NavbarComponent} from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-products',
@@ -16,6 +17,9 @@ export class ProductsComponent implements OnInit {
   product_filter ="";
   default_products : Product ;
   totalElementToShow :number = 10;
+  maxElementToShow :number = 30;
+  counter :number = 0;
+
     constructor(private service: ProductsService, private  router :Router,private connService: ConnectionService) {
       this.default_products = {
         _id:"",
@@ -34,6 +38,7 @@ export class ProductsComponent implements OnInit {
     if(!this.connService.loggediIn()){
       this.router.navigateByUrl('login');
     }
+
   }
 
   getProducts() {
@@ -45,9 +50,11 @@ export class ProductsComponent implements OnInit {
     },error => {
       sessionStorage.setItem("token", sessionStorage.getItem("token_ref") || "");
       this.connService.refresh_token().subscribe(data =>{
-        //to verify
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('token_ref', data.refresh_token);
+        if(data.status == "success"){
+          localStorage.setItem('token', data.access_token);
+        }else {
+          this.connService.logOut();
+        }
       },error=>{
         this.connService.logOut();
       });
@@ -122,5 +129,31 @@ export class ProductsComponent implements OnInit {
     }
   }
 
+  onScrollDown(ev: any) {
+    if(this.allProducts != null){
+      if( this.counter + this.totalElementToShow > this.maxElementToShow){
+        this.products = this.allProducts.slice(-this.maxElementToShow + this.counter + this.totalElementToShow,this.counter + this.totalElementToShow);
+      }else{
+        this.products = this.allProducts.slice(0,this.counter + this.totalElementToShow);
+      }
+      if(this.counter + this.totalElementToShow < this.allProducts.length){
+        this.counter+=2;
+      }
+    }
+    console.log(this.counter +"down");
+  }
 
+  onScrollUp(ev: any){
+    console.log(this.counter+"fhfhfh");
+    if(this.allProducts != null){
+      if( this.counter + this.totalElementToShow > this.maxElementToShow){
+        this.products = this.allProducts.slice(-this.maxElementToShow + this.counter + this.totalElementToShow,this.counter + this.totalElementToShow);
+      }else{
+        this.products = this.allProducts.slice(0,this.counter + this.totalElementToShow);
+      }
+      if(this.counter >0 ){
+        this.counter-=1;
+      }
+    }
+  }
 }

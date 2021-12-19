@@ -25,8 +25,7 @@ export interface User {
 }
 
 export interface Token_info {
-  //to verify
-  token:string;
-  refresh_token:string
+  status: string,
+  access_token: string
 
 }
