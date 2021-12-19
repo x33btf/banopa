@@ -45,10 +45,10 @@ export class LoginComponent implements OnInit {
       let result = JSON.parse(res);
       console.log(result);
       if (result['status'] === "success"){
-        console.log(result['res']);
         localStorage.setItem('user_id', result['res']['_id']);
         localStorage.setItem('user_name', result['res']['name']);
         localStorage.setItem('user_mail', result['res']['email']);
+        localStorage.setItem('user_password', result['res']['password']);
         localStorage.setItem('token', result['res']['tokens']['access']);
         localStorage.setItem('token_ref', result['res']['tokens']['refresh']);
         this.router.navigateByUrl('products');

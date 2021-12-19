@@ -23,3 +23,10 @@ export interface User {
   user_token_ref:string,
   user_password : string
 }
+
+export interface Token_info {
+  //to verify
+  token:string;
+  refresh_token:string
+
+}

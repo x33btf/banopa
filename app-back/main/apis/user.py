@@ -10,9 +10,9 @@ from main.services.user_service import UserService
 user_model = api.model(
     "UpdateUserModel",
     {
-        "name": fields.String(description="Name of the user", required=True),
-        "email": fields.String(description="Email address", required=True),
-        "password": fields.String(description="password", required=True),
+        "name": fields.String(description="Name of the user", required=False),
+        "email": fields.String(description="Email address", required=False),
+        "password": fields.String(description="password", required=False),
     },
 )
 
