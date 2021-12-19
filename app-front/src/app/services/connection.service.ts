@@ -26,4 +26,8 @@ export class ConnectionService{
     return localStorage.getItem("token");
   }
 
+  logOut(){
+    localStorage.removeItem('token');
+  }
+
 }

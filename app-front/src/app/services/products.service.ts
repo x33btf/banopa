@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {Product} from "../model/product.model";
+import {Product, resProduct} from "../model/product.model";
 
 
 
@@ -12,12 +12,16 @@ export class ProductsService{
 
   getAllProducts(){
     let host = environment.host+"/restaurant";
-    return this.http.get<Product[]>(host);
+    return this.http.get<resProduct>(host);
   }
 
-  remove_product(id:number) {
-    let host = environment.host+"/remove/";
+  remove_product(id:string) {
+    let host = environment.host+"/restaurant/";
     return this.http.delete(host+id);
+  }
+  add_producr(p:Product){
+    let host = environment.host+"/restaurant/";
+    return this.http.post(host,p);
   }
 
 }
