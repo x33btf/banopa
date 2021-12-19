@@ -62,25 +62,46 @@ export class ProductsComponent implements OnInit {
   });
 
   addProduct() {
-    let p:Product = {
-      _id:"",
-      restaurant_name: this.productForm.value.restaurant_name,
-      borough: this.productForm.value.borough,
-      cuisine: this.productForm.value.cuisine,
-      address: {
-        postcode : this.productForm.value.address_postcode,
-        building : this.productForm.value.address_building,
-        street : this.productForm.value.address_street
-      }
-    };
 
-    this.service.add_product(p).subscribe(data => {
+    if( this.default_products._id === ""){
+      let p:Product = {
+        _id:"",
+        restaurant_name: this.productForm.value.restaurant_name,
+        borough: this.productForm.value.borough,
+        cuisine: this.productForm.value.cuisine,
+        address: {
+          postcode : this.productForm.value.address_postcode,
+          building : this.productForm.value.address_building,
+          street : this.productForm.value.address_street
+        }
+      };
+      this.service.add_product(p).subscribe(data => {
+        this.getProducts();
+      });
+    }else{
+      this.service.update_product(this.default_products).subscribe(data =>{
+        this.getProducts();
+      });
+    }
 
-    });
   }
 
   update_product(p:Product){
     this.default_products = p;
+  }
+
+  clearDefaultRest(){
+    this.default_products = {
+      _id:"",
+      cuisine:"",
+      borough:"",
+      restaurant_name:"",
+      address: {
+        street: "",
+        building: "",
+        postcode: ""
+      }
+    }
   }
 
 

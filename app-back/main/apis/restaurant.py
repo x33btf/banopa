@@ -35,7 +35,8 @@ class NewRestaurant(Resource):
     @api.expect(restaurant_model)
     def post(self):
         """ Save new restaurant object into database """
-
+        if '_id' in request.json:
+            del request.json['_id']
         res, msg, code = self.restaurant_service.add(request.json)
 
         return {
@@ -81,6 +82,9 @@ class Restaurant(Resource):
         """ Update restaurant based on restaurant_id. 5e86d84da011b26c2082e0c9 """
         if not restaurant_id:
             api.abort(400, "restaurant_id is missing.", status="error")
+
+        if '_id' in request.json:
+            del request.json['_id']
 
         status, obj, msg, code = self.restaurant_service.update_restaurant(restaurant_id, request.json)
 

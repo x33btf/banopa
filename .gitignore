@@ -4,5 +4,6 @@ app-front/.vscode/*
 app-back/__pycache__/*
 
 app-back/venv/*
+app-back/.idea/*
 
 **/__pycache__/
