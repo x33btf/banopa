@@ -31,6 +31,9 @@ export class ConnectionService{
   logOut(){
     localStorage.removeItem('token');
     this.router.navigateByUrl('login');
+    localStorage.removeItem("user_mail");
+    localStorage.removeItem(("user_id"));
+    localStorage.removeItem("user_name");
   }
 
   update_user_info(info:any,id:string){

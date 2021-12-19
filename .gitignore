@@ -1,10 +1,11 @@
 app-front/node_modules/*
 app-front/.idea/*
 app-front/.vscode/*
-app-back/__pycache__/*
 
 app-back/venv/*
 app-back/.idea/*
+app-back/__pycache__/
 
-**/__pycache__/
-!**/__pycache__/
+
+**/__pycache__/**
+!**/__pycache__/**

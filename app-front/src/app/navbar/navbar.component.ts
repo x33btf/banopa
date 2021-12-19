@@ -34,6 +34,8 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.service.logOut();
+    this.user.user_name = "";
+    this.user.user_mail = "";
   }
 
   hideRegister() {
