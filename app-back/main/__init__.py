@@ -32,6 +32,7 @@ def create_app(config_name):
 
     cors = CORS(app)
     app.config["CORS_HEADERS"] = "Content-Type"
+    app.config["CORS_SEND_WILDCARD"] = True
 
     app.config["JWT_SECRET_KEY"] = "9MZbGqQHaC47SSKyKaTK"
     app.config["JWT_TOKEN_LOCATION"] = ["headers"]
@@ -44,7 +45,7 @@ def create_app(config_name):
 
     # Swagger UI config
     app.config.SWAGGER_UI_JSONEDITOR = True
-    app.config.SWAGGER_UI_DOC_EXPANSION = "none"  # none, list, full
+    app.config.SWAGGER_UI_DOC_EXPANSION = "full"  # none, list, full
 
     with app.app_context():
         db = MongoDB()
