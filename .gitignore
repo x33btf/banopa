@@ -7,3 +7,4 @@ app-back/venv/*
 app-back/.idea/*
 
 **/__pycache__/
+!**/__pycache__/
