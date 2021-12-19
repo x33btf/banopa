@@ -75,6 +75,6 @@ class UserService:
         self.blacklist.add_token_to_database(
             user_tokens["access"], app.config["JWT_IDENTITY_CLAIM"]
         )
-        self.blacklist.add_token_to_database(
-            user_tokens["refresh"], app.config["JWT_IDENTITY_CLAIM"]
-        )
+        # self.blacklist.add_token_to_database(
+        #     user_tokens["refresh"], app.config["JWT_IDENTITY_CLAIM"]
+        # )

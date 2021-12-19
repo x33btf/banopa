@@ -145,6 +145,7 @@ class TokenRefresh(Resource):
 
     def __init__(self, args):
         super(TokenRefresh, self).__init__()
+        self.user_service = UserService()
 
     @jwt_refresh_token_required
     def post(self):
@@ -152,6 +153,6 @@ class TokenRefresh(Resource):
         current_user = get_jwt_identity()
         access_token = create_access_token(identity=current_user)
 
-        self.user_service.save_tokens(access_token)
+        #self.user_service.save_tokens(access_token)
 
         return {"status": "success", "access_token": access_token}, 200
