@@ -19,7 +19,7 @@ export class ProductsService{
     let host = environment.host+"/restaurant/";
     return this.http.delete(host+id);
   }
-  add_producr(p:Product){
+  add_product(p:Product){
     let host = environment.host+"/restaurant/";
     return this.http.post(host,p);
   }

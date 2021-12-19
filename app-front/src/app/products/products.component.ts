@@ -14,8 +14,21 @@ export class ProductsComponent implements OnInit {
   products : Product[] = [];
   allProducts : Product[] | null = null;
   product_filter ="";
+  default_products : Product ;
   totalElementToShow :number = 10;
-    constructor(private service: ProductsService, private  router :Router,private connService: ConnectionService) { }
+    constructor(private service: ProductsService, private  router :Router,private connService: ConnectionService) {
+      this.default_products = {
+        _id:"",
+        cuisine:"",
+        borough:"",
+        restaurant_name:"",
+        address: {
+          street: "",
+          building: "",
+          postcode: ""
+        }
+        }
+    }
 
   ngOnInit(): void {
     if(!this.connService.loggediIn()){
@@ -43,9 +56,9 @@ export class ProductsComponent implements OnInit {
     restaurant_name: new FormControl('',Validators.required),
     borough: new FormControl('',Validators.required),
     cuisine: new FormControl('',Validators.required),
-    address_postcode: new FormControl('',Validators.required),
-    address_building: new FormControl('',Validators.required),
-    address_street: new FormControl('',Validators.required),
+    address_postcode: new FormControl(''),
+    address_building: new FormControl(''),
+    address_street: new FormControl(''),
   });
 
   addProduct() {
@@ -60,10 +73,14 @@ export class ProductsComponent implements OnInit {
         street : this.productForm.value.address_street
       }
     };
-    console.log("okkokkkoko");
-    this.service.add_producr(p).subscribe(data => {
-      console.log("okkokkkoko");
+
+    this.service.add_product(p).subscribe(data => {
+
     });
+  }
+
+  update_product(p:Product){
+    this.default_products = p;
   }
 
 

@@ -18,28 +18,28 @@
           <form [formGroup]="productForm" (ngSubmit)="addProduct()">
             <div class="form-group p-lg-2">
               <label for="restaurant_name">restaurant name:</label>
-              <input id="restaurant_name" class="form-control" type="text" formControlName="restaurant_name" placeholder="restaurant name" required minlength="4">
+              <input id="restaurant_name" class="form-control" value="{{default_products.restaurant_name}}" type="text" formControlName="restaurant_name" placeholder="restaurant name" required minlength="4">
             </div>
             <div class="form-group p-lg-2">
               <label for="cuisine">cuisine:</label>
-              <input id="cuisine" class="form-control" type="text" formControlName="cuisine" placeholder="cuisine" required minlength="4">
+              <input id="cuisine" class="form-control" value="{{default_products.cuisine}}" type="text" formControlName="cuisine" placeholder="cuisine" required minlength="4">
             </div>
             <div class="form-group p-lg-2">
               <label for="borough">borough:</label>
-              <input id="borough" class="form-control" type="text" formControlName="borough" placeholder="borough" required minlength="4">
+              <input id="borough" class="form-control" value="{{default_products.borough}}" type="text" formControlName="borough" placeholder="borough" required minlength="4">
             </div>
             <div class="form-group p-lg-2">
               <label for="address_building">address:</label>
-              <input type="text" class="form-control" placeholder="address building" id="address_building" formControlName="address_building"
-                     required minlength="4">
+              <input type="text" class="form-control" value="{{default_products.address.building}}" placeholder="address building" id="address_building" formControlName="address_building"
+                     >
 
-              <input type="text" class="form-control" placeholder="address street" id="address_street" formControlName="address_street"
-                     required minlength="4">
+              <input type="text" class="form-control" value="{{default_products.address.street}}" placeholder="address street" id="address_street" formControlName="address_street"
+                     >
 
-              <input type="text" class="form-control" placeholder="address postcode" id="address_postcode" formControlName="address_postcode"
-                     required minlength="4">
+              <input type="text" class="form-control" value="{{default_products.address.postcode}}" placeholder="address postcode" id="address_postcode" formControlName="address_postcode"
+                     >
             </div>
-            <button type="submit" class="btn btn-default" [disabled]="!productForm.valid">save</button>
+            <button type="submit" class="btn btn-default" >save</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -50,6 +50,7 @@
 
     </div>
   </div>
+
 
   <table class="table table-striped product-table">
     <thead>
@@ -70,6 +71,9 @@
         <button class="btn btn-danger btn-sm" (click)="remove_product(p)">
           remove
         </button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"  (click)="update_product(p)">Edit</button>
       </td>
     </tr>
     </tbody>
