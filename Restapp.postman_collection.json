@@ -307,7 +307,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"restaurant_name\": \"\",\r\n    \"cuisine\": \"\",\r\n    \"borough\": \"\",\r\n    \"address\": {\r\n        \"building\": \"\",\r\n        \"street\": \"\",\r\n        \"zipcode\": \"\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"restaurant_name\": \"\",\r\n    \"cuisine\": \"\",\r\n    \"town\": \"\",\r\n    \"address\": {\r\n        \"building_number\": \"\",\r\n        \"street\": \"\",\r\n        \"zipcode\": \"\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

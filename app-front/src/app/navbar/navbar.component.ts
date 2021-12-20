@@ -28,14 +28,15 @@ export class NavbarComponent implements OnInit {
 
   }
   userForm = new FormGroup({
-    user_name: new FormControl(localStorage.getItem("user_name"),Validators.required),
-    email: new FormControl(localStorage.getItem("user_mail"),Validators.required)
+    user_name: new FormControl(localStorage.getItem("user_name"), Validators.required),
+    email: new FormControl(localStorage.getItem("user_mail"), Validators.required)
   });
 
   logout() {
     this.service.logOut();
     this.user.user_name = "";
     this.user.user_mail = "";
+    this.user.user_id = "";
   }
 
   hideRegister() {

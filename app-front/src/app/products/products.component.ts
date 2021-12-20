@@ -24,11 +24,11 @@ export class ProductsComponent implements OnInit {
       this.default_products = {
         _id:"",
         cuisine:"",
-        borough:"",
+        town:"",
         restaurant_name:"",
         address: {
           street: "",
-          building: "",
+          building_number: "",
           postcode: ""
         }
         }
@@ -71,10 +71,10 @@ export class ProductsComponent implements OnInit {
 
   productForm = new FormGroup({
     restaurant_name: new FormControl('',Validators.required),
-    borough: new FormControl('',Validators.required),
+    town: new FormControl('',Validators.required),
     cuisine: new FormControl('',Validators.required),
     address_postcode: new FormControl(''),
-    address_building: new FormControl(''),
+    address_building_number: new FormControl(''),
     address_street: new FormControl(''),
   });
 
@@ -82,11 +82,11 @@ export class ProductsComponent implements OnInit {
     let p:Product = {
       _id:"",
       restaurant_name: this.productForm.value.restaurant_name,
-      borough: this.productForm.value.borough,
+      town: this.productForm.value.town,
       cuisine: this.productForm.value.cuisine,
       address: {
         postcode : this.productForm.value.address_postcode,
-        building : this.productForm.value.address_building,
+        building_number : this.productForm.value.address_building_number,
         street : this.productForm.value.address_street
       }
     };
@@ -111,11 +111,11 @@ export class ProductsComponent implements OnInit {
     this.default_products = {
       _id:"",
       cuisine:"",
-      borough:"",
+      town:"",
       restaurant_name:"",
       address: {
         street: "",
-        building: "",
+        building_number: "",
         postcode: ""
       }
     }

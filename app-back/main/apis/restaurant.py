@@ -12,9 +12,9 @@ restaurant_model = api.model(
     {
         "restaurant_name": fields.String(description="Restaurant name", required=True),
         "cuisine": fields.String(description="Name of the cuisine", required=True),
-        "borough": fields.String(description="borough of restaurant", required=True),
+        "town": fields.String(description="Town of restaurant", required=True),
         "address": {
-            "building": fields.String(description="building name/number", required=True),
+            "building_number": fields.String(description="building number", required=True),
             "street": fields.String(description="street name", required=True),
             "postcode": fields.String(description="Postcode", required=True),
         },
@@ -59,9 +59,9 @@ update_restaurant_model = api.model(
     {
         "restaurant_name": fields.String(description="Restaurant name", required=False),
         "cuisine": fields.String(description="Name of the cuisine", required=False),
-        "borough": fields.String(description="borough of restaurant", required=False),
+        "town": fields.String(description="town of restaurant", required=False),
         "address": {
-            "building": fields.String(description="building name/number", required=False),
+            "building_number": fields.String(description="building_number name/number", required=False),
             "street": fields.String(description="street name", required=False),
             "postcode": fields.String(description="Postcode", required=False)
         },

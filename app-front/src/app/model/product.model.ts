@@ -2,9 +2,9 @@ export  interface Product {
   _id : string,
   restaurant_name: string,
   cuisine: string,
-  borough: string,
+  town: string,
   address: {
-    building: string,
+    building_number: string,
     street: string,
     postcode: string
   }

@@ -1,12 +1,20 @@
 <div class="container">
   <nav class="navbar-fixed-top" style="width: 80%;margin-left: 10%;">
   <div class="container-fluid bg-info form-inline"  style="margin-top: 80px">
-    <button class="btn-primary" (click)="getProducts()" style="padding: 10px;margin: 5px;cursor: pointer">All products
+    <button class=" bg-info" (click)="getProducts()" style="border: 0;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="green" class="bi bi-bullseye" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10zm0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+        <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+        <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+      </svg>
     </button>
-    <button type="button" (click)="clearDefaultRest()" class="btn btn-info btn-lg" data-toggle="modal"
-            data-target="#myModal">Add new rest
+    <button type="button" (click)="clearDefaultRest()"  class=" bg-info" style="border: 0; " data-toggle="modal"
+            data-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-plus" viewBox="0 0 13 13">
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            </svg> 
     </button>
-    <input type="search" class="search-input" [(ngModel)]="product_filter" (keyup)="filtersProducts()"
+    <input type="search" style="border: 0; " class="search-input" [(ngModel)]="product_filter" (keyup)="filtersProducts()"
            placeholder="Filter" aria-label="Search"/>
   </div>
   </nav>
@@ -17,7 +25,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 class="modal-title">Edit/Add a new restaurant</h4>
         </div>
         <div class="modal-body">
 
@@ -25,30 +33,30 @@
             <div class="form-group p-lg-2">
               <label for="restaurant_name">restaurant name:</label>
               <input id="restaurant_name" class="form-control" value="{{default_products.restaurant_name}}" type="text"
-                     formControlName="restaurant_name" placeholder="restaurant name" required minlength="4">
+                     formControlName="restaurant_name" placeholder="Restaurant name" required minlength="4">
             </div>
             <div class="form-group p-lg-2">
               <label for="cuisine">cuisine:</label>
               <input id="cuisine" class="form-control" value="{{default_products.cuisine}}" type="text"
-                     formControlName="cuisine" placeholder="cuisine" required minlength="4">
+                     formControlName="cuisine" placeholder="Cuisine" required minlength="4">
             </div>
             <div class="form-group p-lg-2">
-              <label for="borough">borough:</label>
-              <input id="borough" class="form-control" value="{{default_products.borough}}" type="text"
-                     formControlName="borough" placeholder="borough" required minlength="4">
+              <label for="town">town:</label>
+              <input id="town" class="form-control" value="{{default_products.town}}" type="text"
+                     formControlName="town" placeholder="Town" required minlength="4">
             </div>
             <div class="form-group p-lg-2">
-              <label for="address_building">address:</label>
-              <input type="text" class="form-control" value="{{default_products.address.building}}"
-                     placeholder="address building" id="address_building" formControlName="address_building"
+              <label for="address_building_number">address:</label>
+              <input type="text" class="form-control" value="{{default_products.address.building_number}}"
+                     placeholder="Building number" id="address_building_number" formControlName="address_building_number"
               >
 
               <input type="text" class="form-control" value="{{default_products.address.street}}"
-                     placeholder="address street" id="address_street" formControlName="address_street"
+                     placeholder="Street" id="address_street" formControlName="address_street"
               >
 
               <input type="text" class="form-control" value="{{default_products.address.postcode}}"
-                     placeholder="address postcode" id="address_postcode" formControlName="address_postcode"
+                     placeholder="Postcode" id="address_postcode" formControlName="address_postcode"
               >
             </div>
             <button type="submit" class="btn btn-default">save</button>
@@ -77,23 +85,22 @@
     <tr>
       <th>Restaurant name</th>
       <th>Cuisine</th>
-      <th>Borough</th>
+      <th>town</th>
       <th>Address</th>
+      <th>Actions</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let p of products">
       <td>{{p.restaurant_name}}</td>
       <td>{{p.cuisine}}</td>
-      <td>{{p.borough}}</td>
-      <td>{{p.address.building}} {{p.address.street}} {{p.address.postcode}}</td>
+      <td>{{p.town}}</td>
+      <td>{{p.address.building_number}} {{p.address.street}} {{p.address.postcode}}</td>
       <td>
-        <button class="btn btn-danger btn-lg" (click)="remove_product(p)">
+        <button class="btn" (click)="remove_product(p)">
           remove
         </button>
-      </td>
-      <td>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"
                 (click)="update_product(p)">Edit
         </button>
       </td>
